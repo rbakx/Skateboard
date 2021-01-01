@@ -1,0 +1,245 @@
+{
+  "uuid": "35c5f84bcbf8511913baf9d7030889ff",
+  "path": "Offline/Skateboard",
+  "name": "Skateboard",
+  "content": "",
+  "created_at": "2021-01-01 12:40:12",
+  "updated_at": "2021-01-01 13:19:44",
+  "stick": "",
+  "documents": [
+    {
+      "uuid": "ede0be71b9209f781b424f3297273eb7",
+      "title": "Circuit",
+      "description": "",
+      "docType": "1",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "70c2ab06c08d4b8d8ff8ec184eceebb0": 3,
+        "dae7f97ebfa34b9a8267d29ce0d9d6dd": 6,
+        "36628af0fe3849a2f482991ed56c81b7": 1,
+        "fc217faf64a940a397750f89d4f53ff3": 2,
+        "8d30cb5f727d4b9cbb85f010a40eda99": 6,
+        "24eeb2ceca08480b92b847b6a310acda": 1,
+        "26358a93de3c4a4393ba6d2a0119604e": 1
+      },
+      "BOM": [
+        [
+          "Value",
+          "Quantity",
+          "Package",
+          "Components",
+          "CustomPara"
+        ],
+        [
+          "Power",
+          1,
+          "H2-5.0-10.5X8.0MM",
+          "PWR",
+          {
+            "BOM_Manufacturer Part": "?",
+            "puuid": "e8260323ff984d118782bc3786c51e77",
+            "uuid": "8d30cb5f727d4b9cbb85f010a40eda99"
+          }
+        ],
+        [
+          "Light sensor",
+          1,
+          "H2-5.0-10.5X8.0MM",
+          "LDR",
+          {
+            "BOM_Manufacturer Part": "?",
+            "puuid": "e8260323ff984d118782bc3786c51e77",
+            "uuid": "8d30cb5f727d4b9cbb85f010a40eda99"
+          }
+        ],
+        [
+          "Vibration sensor",
+          1,
+          "H2-5.0-10.5X8.0MM",
+          "VB",
+          {
+            "BOM_Manufacturer Part": "?",
+            "puuid": "e8260323ff984d118782bc3786c51e77",
+            "uuid": "8d30cb5f727d4b9cbb85f010a40eda99"
+          }
+        ],
+        [
+          "LED strip",
+          1,
+          "H2-5.0-10.5X8.0MM",
+          "LS",
+          {
+            "BOM_Manufacturer Part": "?",
+            "puuid": "e8260323ff984d118782bc3786c51e77",
+            "uuid": "8d30cb5f727d4b9cbb85f010a40eda99"
+          }
+        ],
+        [
+          "LED right",
+          1,
+          "H2-5.0-10.5X8.0MM",
+          "LR",
+          {
+            "BOM_Manufacturer Part": "?",
+            "puuid": "e8260323ff984d118782bc3786c51e77",
+            "uuid": "8d30cb5f727d4b9cbb85f010a40eda99"
+          }
+        ],
+        [
+          "LED left",
+          1,
+          "H2-5.0-10.5X8.0MM",
+          "LL",
+          {
+            "BOM_Manufacturer Part": "?",
+            "puuid": "e8260323ff984d118782bc3786c51e77",
+            "uuid": "8d30cb5f727d4b9cbb85f010a40eda99"
+          }
+        ],
+        [
+          "0.1u",
+          1,
+          "CONDENSATOR 0.1UF",
+          "C1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "7e965212c9904ae296c36cc77572a3e0",
+            "uuid": "24eeb2ceca08480b92b847b6a310acda"
+          }
+        ],
+        [
+          "IRLB8721PbF",
+          3,
+          "T0220AB",
+          "M3,M1,M2",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "febeab670b1b4d8b9bc81df7b04d486e",
+            "uuid": "70c2ab06c08d4b8d8ff8ec184eceebb0"
+          }
+        ],
+        [
+          "RGB LED connector",
+          1,
+          "RGB LED CONNECTOR",
+          "U2",
+          {
+            "BOM_Manufacturer": "",
+            "BOM_Manufacturer Part": "",
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "puuid": "4e0bf0f9b7aa4d0080bcb97d21abada5",
+            "uuid": "26358a93de3c4a4393ba6d2a0119604e"
+          }
+        ],
+        [
+          "ATMEGA328P-PU",
+          1,
+          "DIP-28_L34.6-W7.3-P2.54-LS10.2-BL",
+          "U1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Manufacturer": "MICROCHIP",
+            "BOM_Manufacturer Part": "ATMEGA328P-PU",
+            "BOM_Supplier Part": "C33901",
+            "puuid": "2f1d96128ab94db491eae99d61bfb39c",
+            "uuid": "36628af0fe3849a2f482991ed56c81b7"
+          }
+        ],
+        [
+          "10K",
+          3,
+          "RESISTOR-1/4W-HORIZONTAL",
+          "R2,R4,R5",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "a6f62f03d0f7481fa82dfaa4df1b1955",
+            "uuid": "dae7f97ebfa34b9a8267d29ce0d9d6dd"
+          }
+        ],
+        [
+          "3.0",
+          2,
+          "RESISTOR-1/4W-HORIZONTAL",
+          "R3,R1",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "a6f62f03d0f7481fa82dfaa4df1b1955",
+            "uuid": "dae7f97ebfa34b9a8267d29ce0d9d6dd"
+          }
+        ],
+        [
+          "330",
+          1,
+          "RESISTOR-1/4W-HORIZONTAL",
+          "R6",
+          {
+            "BOM_Supplier Part": "",
+            "BOM_Supplier": "",
+            "BOM_Manufacturer Part": "",
+            "puuid": "a6f62f03d0f7481fa82dfaa4df1b1955",
+            "uuid": "dae7f97ebfa34b9a8267d29ce0d9d6dd"
+          }
+        ],
+        [
+          "BC547C",
+          2,
+          "TO-92-3_L4.9-W3.7-P1.27-L",
+          "Q2,Q1",
+          {
+            "BOM_Supplier": "LCSC",
+            "BOM_Supplier Part": "C713614",
+            "BOM_Manufacturer": "LGE",
+            "BOM_Manufacturer Part": "BC547C",
+            "puuid": "6924b36489de4921bb29ca14bf27c33f",
+            "uuid": "fc217faf64a940a397750f89d4f53ff3"
+          }
+        ]
+      ],
+      "updateTime": 1609503584,
+      "createTime": 1609501212,
+      "histories": [],
+      "created_at": "2021-01-01 12:40:12",
+      "updated_at": "2021-01-01 13:19:44"
+    },
+    {
+      "uuid": "5bf805f9433045f13cc31d4a315d55ac",
+      "puuid": "35c5f84bcbf8511913baf9d7030889ff",
+      "title": "PCB_2020-12-25_11-57-27",
+      "filename": "PCB_2020-12-25_11-57-27.json",
+      "description": "",
+      "docType": "3",
+      "master": "",
+      "thumb": "/images/thumb-default.png",
+      "components": {
+        "a6f62f03d0f7481fa82dfaa4df1b1955": 6,
+        "7e965212c9904ae296c36cc77572a3e0": 1,
+        "febeab670b1b4d8b9bc81df7b04d486e": 3,
+        "2f1d96128ab94db491eae99d61bfb39c": 1,
+        "6924b36489de4921bb29ca14bf27c33f": 2,
+        "e8260323ff984d118782bc3786c51e77": 6,
+        "4e0bf0f9b7aa4d0080bcb97d21abada5": 1
+      },
+      "BOM": [],
+      "updateTime": 1609501605,
+      "createTime": 1609501334,
+      "histories": [],
+      "created_at": "2021-01-01 12:42:14",
+      "updated_at": "2021-01-01 12:46:45"
+    }
+  ],
+  "sort": [],
+  "title": "Skateboard",
+  "foldername": "Skateboard",
+  "schfilename": "Skateboard.json",
+  "schfilemtime": 1609503585010
+}
