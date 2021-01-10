@@ -8,10 +8,16 @@
 #include <avr/wdt.h>
 
 const int LdrPin = A0;
+const int BatteryPin = A1;
 const int InterruptPin = 2;
 const int HeadlightPin = 8;
 const int LedstripPin = 9;
-const int LdrSupply = 12;
+const int LdrSupplyPin = 12;
+const int RGBBluePin = 5;
+const int RGBGreenPin = 6;
+const int RGBRedPin = 7;
+const int BatteryThresholdGreen = 440; // With resistors 86K6 and 10K this corresponds to 4.57V (analog reference is internal 1.1V).
+const int BatteryThresholdBlue = 400;  // With resistors 86K6 and 10K this corresponds to 4.15V (analog reference is internal 1.1V).
 const int LdrThresholdLower = 500;
 const int LdrThresholdHigher = 600;
 const int MotionCheckIntervalMillis = 5000 / 2; // Because we use the internal clock of 8 MHz we have to divide the desired interval by two.
@@ -30,6 +36,7 @@ void setAllPinsToInput()
   pinMode(6, INPUT_PULLUP);
   pinMode(7, INPUT_PULLUP);
   pinMode(8, INPUT_PULLUP);
+  pinMode(9, INPUT_PULLUP);
   pinMode(10, INPUT_PULLUP);
   pinMode(11, INPUT_PULLUP);
   pinMode(12, INPUT_PULLUP);
@@ -62,9 +69,14 @@ void setup()
   setAllPinsToInput(); // This does not seem to save additional power ( > 1 μA).
   disableAc();         // This does not seem to save additional power ( > 1 μA).
   wdt_disable();       // This does not seem to save additional power ( > 1 μA).
+  analogReference(INTERNAL); // Analog reference to internal 1.1V (for ATmega328P).
   pinMode(InterruptPin, INPUT_PULLUP);
   pinMode(HeadlightPin, OUTPUT);
-  pinMode(LdrSupply, OUTPUT);
+  pinMode(LedstripPin, OUTPUT);
+  pinMode(LdrSupplyPin, OUTPUT);
+  pinMode(RGBBluePin, OUTPUT);
+  pinMode(RGBGreenPin, OUTPUT);
+  pinMode(RGBRedPin, OUTPUT);
   set_sleep_mode(SLEEP_MODE_PWR_DOWN); // Set sleep mode to power down.
   attachInterrupt(0, wakeup, FALLING); // trigger interrupt when INT0 goes from HIGH to LOW.
   sleep_enable();
@@ -73,17 +85,39 @@ void setup()
 void loop()
 {
   static unsigned long previousMillis = 0;
-  digitalWrite(LdrSupply, HIGH);
+  digitalWrite(LdrSupplyPin, HIGH);
+  int batteryVal = analogRead(BatteryPin);
   int ldrVal = analogRead(LdrPin);
-  Serial.println("LDR value: " + String(ldrVal));
-  digitalWrite(LdrSupply, LOW);    // Output back to low to save power.
+  //Serial.println("LDR value: " + String(ldrVal));
+  //Serial.println("Battery value: " + String(batteryVal));
+  if (batteryVal > BatteryThresholdGreen) // If it is dark with hysteresis.
+  {
+    digitalWrite(RGBGreenPin, HIGH);
+    digitalWrite(RGBBluePin, LOW);
+    digitalWrite(RGBRedPin, LOW);
+  }
+  else if (batteryVal > BatteryThresholdBlue) // If it is light with hysteresis.
+  {
+    digitalWrite(RGBGreenPin, LOW);
+    digitalWrite(RGBBluePin, HIGH);
+    digitalWrite(RGBRedPin, LOW);
+  }
+  else
+  {
+    digitalWrite(RGBGreenPin, LOW);
+    digitalWrite(RGBBluePin, LOW);
+    digitalWrite(RGBRedPin, HIGH);
+  }
+  digitalWrite(LdrSupplyPin, LOW); // Output back to low to save power.
   if (ldrVal > LdrThresholdHigher) // If it is dark with hysteresis.
   {
     digitalWrite(HeadlightPin, HIGH);
+    digitalWrite(LedstripPin, HIGH);
   }
   else if (ldrVal < LdrThresholdLower) // If it is light with hysteresis.
   {
     digitalWrite(HeadlightPin, LOW);
+    digitalWrite(LedstripPin, LOW);
   }
 
   //Serial.println("millis: " + String(millis()) + " motion: " + String(motion));
@@ -95,6 +129,10 @@ void loop()
   else if (millis() - previousMillis >= MotionCheckIntervalMillis)
   {
     digitalWrite(HeadlightPin, LOW);
+    digitalWrite(LedstripPin, LOW);
+    digitalWrite(RGBGreenPin, LOW);
+    digitalWrite(RGBBluePin, LOW);
+    digitalWrite(RGBRedPin, LOW);
     disableAdc();        // This will save appr. 260 μA.
     power_all_disable(); // This does not seem to save additional power.
     sleep_bod_disable(); // BODS (Brown Out Detection Sleep) is active only 3 clock cycles, so sleep_cpu() must follow immediately. This will save appr. 20 μA.
