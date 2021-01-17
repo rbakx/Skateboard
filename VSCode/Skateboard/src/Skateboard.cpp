@@ -18,8 +18,8 @@ const int RGBGreenPin = 6;
 const int RGBRedPin = 7;
 const int BatteryThresholdGreen = 440; // With resistors 86K6 and 10K this corresponds to 4.57V (analog reference is internal 1.1V).
 const int BatteryThresholdBlue = 400;  // With resistors 86K6 and 10K this corresponds to 4.15V (analog reference is internal 1.1V).
-const int LdrThresholdLower = 500;
-const int LdrThresholdHigher = 600;
+const int LdrThresholdLower = 700;
+const int LdrThresholdHigher = 800;
 const int MotionCheckIntervalMillis = 5000 / 2; // Because we use the internal clock of 8 MHz we have to divide the desired interval by two.
 volatile bool motion = false;
 
@@ -90,19 +90,19 @@ void loop()
   int ldrVal = analogRead(LdrPin);
   //Serial.println("LDR value: " + String(ldrVal));
   //Serial.println("Battery value: " + String(batteryVal));
-  if (batteryVal > BatteryThresholdGreen) // If it is dark with hysteresis.
+  if (batteryVal > BatteryThresholdGreen)     // Battery high voltage.
   {
     digitalWrite(RGBGreenPin, HIGH);
     digitalWrite(RGBBluePin, LOW);
     digitalWrite(RGBRedPin, LOW);
   }
-  else if (batteryVal > BatteryThresholdBlue) // If it is light with hysteresis.
+  else if (batteryVal > BatteryThresholdBlue) // Battery medium voltage.
   {
     digitalWrite(RGBGreenPin, LOW);
     digitalWrite(RGBBluePin, HIGH);
     digitalWrite(RGBRedPin, LOW);
   }
-  else
+  else                                        // Battery low voltage.
   {
     digitalWrite(RGBGreenPin, LOW);
     digitalWrite(RGBBluePin, LOW);
