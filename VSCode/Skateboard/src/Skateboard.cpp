@@ -1,6 +1,6 @@
 /*
-   Demo program for the FHICTBot.
-   This bot is equipped with two Parallax Feedback 360° High-Speed Servo's.
+   Program for skateboard lights.
+   Meant for Atmega328_on_breadboard_8MHz.
 */
 #include <Arduino.h>
 #include <avr/sleep.h>
@@ -18,8 +18,8 @@ const int RGBGreenPin = 6;
 const int RGBRedPin = 7;
 const int BatteryThresholdGreen = 440; // With resistors 86K6 and 10K this corresponds to 4.57V (analog reference is internal 1.1V).
 const int BatteryThresholdBlue = 400;  // With resistors 86K6 and 10K this corresponds to 4.15V (analog reference is internal 1.1V).
-const int LdrThresholdLower = 700;
-const int LdrThresholdHigher = 800;
+const int LdrThresholdLower = 1000;
+const int LdrThresholdHigher = 1100;
 const int MotionCheckIntervalMillis = 5000 / 2; // Because we use the internal clock of 8 MHz we have to divide the desired interval by two.
 volatile bool motion = false;
 
