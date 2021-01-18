@@ -18,8 +18,8 @@ const int RGBGreenPin = 6;
 const int RGBRedPin = 7;
 const int BatteryThresholdGreen = 440; // With resistors 86K6 and 10K this corresponds to 4.57V (analog reference is internal 1.1V).
 const int BatteryThresholdBlue = 400;  // With resistors 86K6 and 10K this corresponds to 4.15V (analog reference is internal 1.1V).
-const int LdrThresholdLower = 1000;
-const int LdrThresholdHigher = 1100;
+const int LdrThresholdLower = 800;
+const int LdrThresholdHigher = 900;
 const int MotionCheckIntervalMillis = 5000 / 2; // Because we use the internal clock of 8 MHz we have to divide the desired interval by two.
 volatile bool motion = false;
 
