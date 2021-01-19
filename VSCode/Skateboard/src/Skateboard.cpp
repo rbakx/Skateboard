@@ -19,8 +19,8 @@ const int RGBRedPin = 7;
 const int BatteryThresholdGreen = 440; // With resistors 86K6 and 10K this corresponds to 4.57V (analog reference is internal 1.1V).
 const int BatteryThresholdBlue = 400;  // With resistors 86K6 and 10K this corresponds to 4.15V (analog reference is internal 1.1V).
 // LDR thresholds. Lower and higher threshold to have hysteresis.
-const int LdrThresholdHigher = 900; // Higher value means it must be darker to switch on the LEDs.
-const int LdrThresholdLower = 800;  // Lower value means it must be lighter to switch back off the LEDs.
+const int LdrThresholdHigher = 600;             // Higher value means it must be darker to switch on the LEDs.
+const int LdrThresholdLower = 500;              // Lower value means it must be lighter to switch back off the LEDs.
 const int MotionCheckIntervalMillis = 5000 / 2; // Because we use the internal clock of 8 MHz we have to divide the desired interval by two.
 volatile bool motion = false;
 
@@ -70,7 +70,6 @@ void setup()
   setAllPinsToInput(); // This does not seem to save additional power ( > 1 μA).
   disableAc();         // This does not seem to save additional power ( > 1 μA).
   wdt_disable();       // This does not seem to save additional power ( > 1 μA).
-  analogReference(INTERNAL); // Analog reference to internal 1.1V (for ATmega328P).
   pinMode(InterruptPin, INPUT_PULLUP);
   pinMode(HeadlightPin, OUTPUT);
   pinMode(LedstripPin, OUTPUT);
@@ -87,11 +86,13 @@ void loop()
 {
   static unsigned long previousMillis = 0;
   digitalWrite(LdrSupplyPin, HIGH);
+  analogReference(INTERNAL); // Analog reference to internal 1.1V (for ATmega328P). Used for measuring battery voltage, so reference must be independent of the supply voltage.
   int batteryVal = analogRead(BatteryPin);
+  analogReference(DEFAULT); // Analog reference to 5V. Used for measuring LDR voltage which is relative to the 5V supply.
   int ldrVal = analogRead(LdrPin);
   //Serial.println("LDR value: " + String(ldrVal));
   //Serial.println("Battery value: " + String(batteryVal));
-  if (batteryVal > BatteryThresholdGreen)     // Battery high voltage.
+  if (batteryVal > BatteryThresholdGreen) // Battery high voltage.
   {
     digitalWrite(RGBGreenPin, HIGH);
     digitalWrite(RGBBluePin, LOW);
@@ -103,7 +104,7 @@ void loop()
     digitalWrite(RGBBluePin, HIGH);
     digitalWrite(RGBRedPin, LOW);
   }
-  else                                        // Battery low voltage.
+  else // Battery low voltage.
   {
     digitalWrite(RGBGreenPin, LOW);
     digitalWrite(RGBBluePin, LOW);
