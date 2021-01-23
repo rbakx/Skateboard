@@ -19,8 +19,8 @@ const int RGBRedPin = 7;
 const int BatteryThresholdGreen = 440; // With resistors 86K6 and 10K this corresponds to 4.57V (analog reference is internal 1.1V).
 const int BatteryThresholdBlue = 400;  // With resistors 86K6 and 10K this corresponds to 4.15V (analog reference is internal 1.1V).
 // LDR thresholds. Lower and higher threshold to have hysteresis.
-const int LdrThresholdHigher = 700;             // Higher value means it must be darker to switch on the LEDs.
-const int LdrThresholdLower = 500;              // Lower value means it must be lighter to switch back off the LEDs.
+const int LdrThresholdHigher = 800;             // Higher value means it must be darker to switch on the LEDs.
+const int LdrThresholdLower = 600;              // Lower value means it must be lighter to switch back off the LEDs.
 const int MotionCheckIntervalMillis = 5000 / 2; // Because we use the internal clock of 8 MHz we have to divide the desired interval by two.
 volatile bool motion = false;
 
